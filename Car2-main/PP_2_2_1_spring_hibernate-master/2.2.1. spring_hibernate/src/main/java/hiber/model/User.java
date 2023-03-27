@@ -72,7 +72,7 @@ public class User {
       return car;
    }
 
-   public void setCar(){
+   public void setCar(Car car){
       this.car = car;
    }
 

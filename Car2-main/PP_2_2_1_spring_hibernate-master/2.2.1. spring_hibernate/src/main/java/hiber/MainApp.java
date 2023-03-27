@@ -15,21 +15,37 @@ public class MainApp {
               new AnnotationConfigApplicationContext(AppConfig.class);
 
       CarService carService = context.getBean(CarService.class);
-      carService.add(new Car("BMW", "320"));
-      carService.add(new Car("BMW", "X5"));
-      carService.add(new Car("BMW", "750"));
-      carService.add(new Car("BMW", "X6"));
+      carService.save(new Car("BMW", "320"));
+      carService.save(new Car("BMW", "X5"));
+      carService.save(new Car("BMW", "750"));
+      carService.save(new Car("BMW", "X6"));
 
       UserService userService = context.getBean(UserService.class);
       userService.deleteAllUsers();
-      List<Car> cars = carService.CarService();
+      List<Car> cars = carService.findAll();
 
-      userService.add(new User("Sasha", "Sasha", "Sasha@mail.ru", cars.get(0)));
-      userService.add(new User("Nikita", "Nikita", "Nikita@mail.ru", cars.get(1)));
-      userService.add(new User("Vlad", "Vlad", "Vlad@mail.ru", cars.get(2)));
-      userService.add(new User("Olga", "Olga", "Olga@mail.ru", cars.get(3)));
+//      userService.add(new User("Sasha", "Sasha", "Sasha@mail.ru", cars.get(0)));
+//      userService.add(new User("Nikita", "Nikita", "Nikita@mail.ru", cars.get(1)));
+//      userService.add(new User("Vlad", "Vlad", "Vlad@mail.ru", cars.get(2)));
+//      userService.add(new User("Olga", "Olga", "Olga@mail.ru", cars.get(3)));
 
-      List<User> uu = userService.UserService();
+      //добавление автомобиля через юзера
+      userService.save(new User("Sasha", "Sasha", "Sasha@mail.ru"));
+      userService.save(new User("Nikita", "Nikita", "Nikita@mail.ru"));
+      userService.save(new User("Vlad", "Vlad", "Vlad@mail.ru"));
+      userService.save(new User("Olga", "Olga", "Olga@mail.ru"));
+
+
+      List<User> users = userService.findAll();
+      users.get(0).setCar(cars.get(0));
+      users.get(1).setCar(cars.get(1));
+      users.get(2).setCar(cars.get(2));
+      users.get(3).setCar(cars.get(3));
+      //сохраняем юзеров с добавленным автомобилем
+      users.forEach(t->userService.save(t));
+
+
+      List<User> uu = userService.findAll();
       for (User user : uu) {
          System.out.println("Id = " + user.getId());
          System.out.println("First Name = " + user.getFirstName());

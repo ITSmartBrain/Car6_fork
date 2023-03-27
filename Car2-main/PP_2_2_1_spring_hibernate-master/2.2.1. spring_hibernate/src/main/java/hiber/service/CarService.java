@@ -5,6 +5,6 @@ import hiber.model.Car;
 import java.util.List;
 
 public interface CarService {
-    void add(Car car);
-    List<Car> CarService();
+    void save(Car car);
+    List<Car> findAll();
 }
