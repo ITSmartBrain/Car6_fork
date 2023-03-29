@@ -11,10 +11,13 @@ import java.util.List;
 @Service
 public class CarServiceImp implements CarService {
 
-    @Autowired
     private CarDao carDao;
 
-    @Transactional
+    @Autowired
+    public CarServiceImp(CarDao carDao) {
+        this.carDao = carDao;
+    }
+
     @Override
     public void save(Car car) {
         carDao.save(car);
