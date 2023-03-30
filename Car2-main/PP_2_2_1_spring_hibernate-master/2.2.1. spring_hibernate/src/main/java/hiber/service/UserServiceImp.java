@@ -18,6 +18,7 @@ public class UserServiceImp implements UserService {
         this.userDao = userDao;
     }
 
+    @Transactional
     @Override
     public void save(User user) {
         userDao.save(user);
@@ -28,6 +29,7 @@ public class UserServiceImp implements UserService {
         return userDao.findAll();
     }
 
+    @Transactional
     @Override
     public void deleteAllUsers(){
         userDao.deleteAllUsers();

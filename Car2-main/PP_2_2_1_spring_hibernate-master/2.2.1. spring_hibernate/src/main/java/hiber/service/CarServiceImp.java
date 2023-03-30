@@ -18,6 +18,7 @@ public class CarServiceImp implements CarService {
         this.carDao = carDao;
     }
 
+    @Transactional
     @Override
     public void save(Car car) {
         carDao.save(car);

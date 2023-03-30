@@ -20,7 +20,7 @@ public class UserDaoImp implements UserDao {
         this.sessionFactory = sessionFactory;
     }
 
-    @Transactional
+
     @Override
     public void save(User user) {
         sessionFactory.getCurrentSession().save(user);
@@ -32,7 +32,7 @@ public class UserDaoImp implements UserDao {
         return sessionFactory.getCurrentSession().createQuery("from User").getResultList();
     }
 
-    @Transactional
+
     @Override
     public void deleteAllUsers() {
         List<User> users = findAll();
