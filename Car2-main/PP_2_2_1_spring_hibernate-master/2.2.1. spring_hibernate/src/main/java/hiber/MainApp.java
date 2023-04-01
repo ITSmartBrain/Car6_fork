@@ -24,25 +24,14 @@ public class MainApp {
       userService.deleteAllUsers();
       List<Car> cars = carService.findAll();
 
-//      userService.add(new User("Sasha", "Sasha", "Sasha@mail.ru", cars.get(0)));
-//      userService.add(new User("Nikita", "Nikita", "Nikita@mail.ru", cars.get(1)));
-//      userService.add(new User("Vlad", "Vlad", "Vlad@mail.ru", cars.get(2)));
-//      userService.add(new User("Olga", "Olga", "Olga@mail.ru", cars.get(3)));
+      User user1 = new User("Sasha", "Sasha", "Sasha@mail.ru");
+      User user2 = new User("Nikita", "Nikita", "Nikita@mail.ru");
 
-      //добавление автомобиля через юзера
-      userService.save(new User("Sasha", "Sasha", "Sasha@mail.ru"));
-      userService.save(new User("Nikita", "Nikita", "Nikita@mail.ru"));
-      userService.save(new User("Vlad", "Vlad", "Vlad@mail.ru"));
-      userService.save(new User("Olga", "Olga", "Olga@mail.ru"));
-
-
-      List<User> users = userService.findAll();
-      users.get(0).setCar(cars.get(0));
-      users.get(1).setCar(cars.get(1));
-      users.get(2).setCar(cars.get(2));
-      users.get(3).setCar(cars.get(3));
+      user1.setCar(cars.get(0));
+      user2.setCar(cars.get(1));
       //сохраняем юзеров с добавленным автомобилем
-      users.forEach(t->userService.save(t));
+      userService.save(user1);
+      userService.save(user2);
 
 
       List<User> uu = userService.findAll();
