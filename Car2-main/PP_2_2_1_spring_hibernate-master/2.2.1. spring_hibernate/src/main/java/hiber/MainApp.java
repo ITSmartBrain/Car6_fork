@@ -15,23 +15,14 @@ public class MainApp {
               new AnnotationConfigApplicationContext(AppConfig.class);
 
       CarService carService = context.getBean(CarService.class);
-      carService.save(new Car("BMW", "320"));
-      carService.save(new Car("BMW", "X5"));
-      carService.save(new Car("BMW", "750"));
-      carService.save(new Car("BMW", "X6"));
 
       UserService userService = context.getBean(UserService.class);
       userService.deleteAllUsers();
       List<Car> cars = carService.findAll();
 
-      User user1 = new User("Sasha", "Sasha", "Sasha@mail.ru");
-      User user2 = new User("Nikita", "Nikita", "Nikita@mail.ru");
-
-      user1.setCar(cars.get(0));
-      user2.setCar(cars.get(1));
+      User user1 = new User("Sasha", "Sasha", "Sasha@mail.ru", new Car("car1", "series1"));
       //сохраняем юзеров с добавленным автомобилем
       userService.save(user1);
-      userService.save(user2);
 
 
       List<User> uu = userService.findAll();
